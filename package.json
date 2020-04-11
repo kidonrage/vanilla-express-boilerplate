@@ -5,9 +5,11 @@
   "main": "app.js",
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development npm run start-dev-server",
-    "start:prod": "npm run build && cross-env NODE_ENV=production node app.js",
-    "build": "webpack --config webpack.prod.js",
-    "start-dev-server": "nodemon --watch server --watch app.js"
+    "start:prod": "npm run build && cross-env NODE_ENV=production node ./dist/server/app",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "webpack --config webpack.prod.js",
+    "build:server": "babel ./server --out-dir ./dist/server",
+    "start-dev-server": "nodemon --watch server --exec \"babel-node ./server/app.js\""
   },
   "author": "Vlad Eliseev <freshymanchan@gmail.com>",
   "license": "ISC",

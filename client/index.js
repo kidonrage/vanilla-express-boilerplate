@@ -9,3 +9,6 @@ fetch('/api/')
   .then(response => {
     $apiMessageParagraph.innerText = response.message
   })
+  .catch(error => {
+    $apiMessageParagraph.innerText = `Oops! There is been an error while fetching data from server: ${error}`
+  })
