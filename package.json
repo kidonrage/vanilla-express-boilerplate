@@ -2,11 +2,12 @@
   "name": "vanilla-express-boilerplate",
   "version": "1.0.0",
   "description": "A boilerplate for the Express + vanillaJS stack apps",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start:dev": "cross-env NODE_ENV=development node app.js",
-    "start:prod": "npm run build && cross-env NODE_ENV=production && node app.js",
-    "build": "webpack --config webpack.prod.js"
+    "start:dev": "cross-env NODE_ENV=development npm run start-dev-server",
+    "start:prod": "npm run build && cross-env NODE_ENV=production node app.js",
+    "build": "webpack --config webpack.prod.js",
+    "start-dev-server": "nodemon --watch server --watch app.js"
   },
   "author": "Vlad Eliseev <freshymanchan@gmail.com>",
   "license": "ISC",

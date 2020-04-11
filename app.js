@@ -1,16 +1,19 @@
 const express = require('express');
 const path = require('path');
-const chokidar = require('chokidar');
-const webpack = require('webpack');
-const webpackConfig = require('./webpack.common');
-const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const PUBLIC_DIR = path.join(__dirname, 'public');
 const HTML_FILE = path.join(PUBLIC_DIR, 'index.html');
 
 const app = express();
 
+console.log(process.env.NODE_ENV)
+
 if (process.env.NODE_ENV === "development") {
+  console.log('development')
+  const webpack = require('webpack');
+  const webpackConfig = require('./webpack.dev');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+
   const compiler = webpack(webpackConfig);
 
   app.use(
@@ -19,17 +22,6 @@ if (process.env.NODE_ENV === "development") {
         publicPath: webpackConfig.output.publicPath
     })
   );
-
-  const watcher = chokidar.watch('./server');
-
-  watcher.on('ready', function() {
-    watcher.on('all', function() {
-      console.log("Clearing /server/ module cache from server");
-      Object.keys(require.cache).forEach(function(id) {
-        if (/[\/\\]server[\/\\]/.test(id)) delete require.cache[id];
-      });
-    });
-  });
 }
 
 app.use(express.static(PUBLIC_DIR));
