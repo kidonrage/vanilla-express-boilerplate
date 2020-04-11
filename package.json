@@ -1,0 +1,35 @@
+{
+  "name": "vanilla-express-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate for the Express + vanillaJS stack apps",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "cross-env NODE_ENV=development node app.js",
+    "start:prod": "npm run build && cross-env NODE_ENV=production node app.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "author": "Vlad Eliseev <freshymanchan@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
+    "chokidar": "^3.3.1",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.2",
+    "html-webpack-plugin": "^4.2.0",
+    "nodemon": "^2.0.3",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-livereload-plugin": "^2.3.0",
+    "webpack-merge": "^4.2.2"
+  }
+}
